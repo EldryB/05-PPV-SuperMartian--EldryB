@@ -95,7 +95,7 @@ class PlayState(BaseState):
 
         if key_block_rect and not self.key_spawned:
 
-            # Verificamos la colision con el sensor
+            # We verify collision with sensor
             if self.player.get_collision_rect().colliderect(key_block_rect):
 
                 if self.player.vy < 0 and self.player.score >= self.game_level.goal_score:
@@ -141,7 +141,7 @@ class PlayState(BaseState):
                 item.on_collide(self.player)
                 item.on_consume(self.player)
 
-        # Efecto Fade-out
+        # Fade-out effect
         if self.player.has_key and not self.is_fading_out:
             def finish_level():
                 settings.SOUNDS["victory"].stop()
@@ -150,7 +150,7 @@ class PlayState(BaseState):
             self.is_fading_out = True
             settings.SOUNDS["victory"].play()
 
-            # Congelamos al jugador
+            # We freeze the player
             self.player.vx = 0
             self.player.vy = 0
             self.player.move_direction = 0
@@ -159,7 +159,7 @@ class PlayState(BaseState):
             Timer.tween(
                 5,
                 [(self, {"fade_alpha": 255})],
-                on_finish=finish_level  # Cuando termine el fade, volvemos a la pantalla de inicio
+                on_finish=finish_level  # When fade finishes, we return to the start screen
             )
 
     def render(self, surface: pygame.Surface) -> None:

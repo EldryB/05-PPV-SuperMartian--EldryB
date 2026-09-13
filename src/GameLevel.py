@@ -58,7 +58,7 @@ class GameLevel:
 
         for obj in self.tilemap.object_layers.get("triggers", []):
             if obj.name == "key_block":
-                # Rectangulo de donde va a salir la moneda
+                # Rectangle from where the coin will emerge
                 self.triggers["key_block"] = pygame.Rect(
                     obj.x, obj.y, obj.width, obj.height
                 )
